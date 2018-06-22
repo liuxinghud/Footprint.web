@@ -1,0 +1,70 @@
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="signupForm.valid ? signup():null">
+    <div class="row vertical-vh">
+      <div class="col col-md-8 offset-md-2 align-self-center">
+        <div class="card" style="box-shadow: 0 3px 5px 0 #ddd;">
+          <div class="bg-primary login-head">
+            <h4 class="card-header text-center text-white"> 新用户注册</h4>
+          </div>
+          <div class="card-body">
+            <div class="row login-fields">
+              <div class="col">
+                <mat-form-field style="width: 100%; bottom: 1.03em !important;">
+                  <input matInput placeholder="邮箱" formControlName="account">
+                  <mat-error *ngIf="account.errors?.required">
+                    用户名不能为空
+                  </mat-error>
+                  <mat-error *ngIf="account.errors?.email&&!account.errors?.required">
+                      邮箱格式不正确
+                    </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="w-100"></div>
+              <div class="col">
+                <mat-form-field style="width: 100%;">
+                  <input matInput placeholder="密码" formControlName="password" [type]="hide ? 'password' : 'text'" appCompare="repassword" parent='true'>
+                  <!-- <span matPrefix><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></span> -->
+                  <div matSuffix *ngIf="password.value" (click)="hide = !hide">
+                    <i class="fa  fa-lg" [class.fa-eye]="hide" [class.fa-eye-slash]="!hide" aria-hidden="true"></i>
+                  </div>
+                  <mat-error *ngIf="password.errors?.required">
+                    密码不能为空
+                  </mat-error>
+                  <mat-error *ngIf="password.errors?.pattern">
+                      8位以上必须字母数字特殊符号组合,至少包含一个大写字母
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="w-100"></div>
+              <div class="col">
+                <mat-form-field style="width: 100%;">
+                  <input matInput placeholder="确认密码" formControlName="repassword" type="password" appCompare="password" parent='false'>
+                  <mat-error *ngIf="repassword.errors?.CompareDirective">
+                    两次密码不一致
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="w-100"></div>
+              <div class="col">
+                <mat-form-field style="width: 100%;">
+                  <input matInput placeholder="昵称" formControlName="name" type="text" >
+                  <mat-error *ngIf="name.errors?.required">
+                    昵称不能为空
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent">
+            <div class="row">
+              <div class="col">
+                <button mat-raised-button color="primary" type="submit">注册</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

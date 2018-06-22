@@ -1,0 +1,66 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid ? login():null">
+      <div class="row vertical-vh">
+          <div class="col col-md-8 offset-md-2 align-self-center">
+              <div class="card" style="box-shadow: 0 3px 5px 0 #ddd;">
+                  <div class="bg-primary login-head">
+                      <h4 class="card-header text-center text-white"> 用户登录</h4>
+                  </div>
+                  <div class="card-body">
+                      <div class="row login-fields">
+                          <div class="col">
+                              <mat-form-field style="width: 100%; bottom: 1.03em !important;">
+                                  <input matInput placeholder="用户名" formControlName="username" autocomplete="off">
+                                  <mat-error *ngIf="username.errors?.required">
+                                      用户名不能为空
+                                  </mat-error>
+                              </mat-form-field>
+                          </div>
+                          <div class="w-100"></div>
+                          <div class="col">
+                              <mat-form-field style="width: 100%;">
+                                  <input matInput placeholder="密码" formControlName="password" autocomplete="off" [type]="hide ? 'password' : 'text'">
+                                  <!-- <span matPrefix><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></span> -->
+                                  <div matSuffix *ngIf="password.value" (click)="hide = !hide">
+                                      <i class="fa  fa-lg" [class.fa-eye]="hide" [class.fa-eye-slash]="!hide" aria-hidden="true"></i>
+                                  </div>
+                                  <mat-error *ngIf="password.errors?.required">
+                                          密码不能为空
+                                      </mat-error>
+                              </mat-form-field>
+                          </div>
+                          <div class="w-100"></div>
+                          <div class="col">
+                              <!-- <mat-select placeholder="其他">
+                                      <mat-option value="option">Option</mat-option>
+                                  </mat-select> -->
+                              <mat-checkbox formControlName="rememberme" [checked]="true" color="primary">记住密码</mat-checkbox>
+                          </div>
+                      </div>
+
+
+
+
+
+                  </div>
+                  <div class="card-footer bg-transparent">
+                      <div class="row">
+                          <div class="col">
+                              <button mat-raised-button color="primary" type="submit">登录</button>
+                          </div>
+
+                      </div>
+                      <div class="col text-right">
+                          <!-- <a mat-button routerLink=".">Link</a> -->
+                          没有账号？
+                          <a routerLink="../signup">注册</a>
+                      </div>
+
+
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </form>
+</div>

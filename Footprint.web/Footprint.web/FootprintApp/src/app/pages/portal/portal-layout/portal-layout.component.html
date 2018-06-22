@@ -1,0 +1,148 @@
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light col-md-10 offset-md-1">
+  <a class="navbar-brand">
+      <img src="/assets/logo.png" width="30">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+           
+          <li class="nav-item " routerLinkActive="active">
+              <a class="nav-link" routerLink="./mvc">MVC</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" routerLink="./angular">Angular</a>
+          </li>
+          
+          <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" routerLink="./ionic">ionic</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link " routerLink="./netcore">NetCore2.0</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" routerLink="./db">数据库</a>
+          </li>
+          
+      </ul>
+
+      <div class="my-2">
+          <a routerLink="./login" routerLinkActive="active" >
+              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+          </a>
+          <a   href="javascript:void(0);" >logout</a>
+      </div>
+      
+  </div>
+</nav>
+
+<div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 py-4 mt-5">
+  <router-outlet></router-outlet>
+</div> -->
+<header>
+    <div id="TitleBar">
+        <a routerLink="./mvc">
+            <!-- <img src="/assets/logo.png"
+                 style="height: 35px; float: left" />
+            <div style="float: left; margin-left: 5px; line-height: 1.2">
+                <i style="color: steelblue; font-size: 0.8em; font-weight: bold;">fazhi.co</i><br />
+                <i style="color: whitesmoke; font-size: 1.25em; font-weight: bold;">我的足迹</i>
+            </div> -->
+            <div class="media">
+                <img class="align-self-center mr-3" src="/assets/logo.png" height="40" alt="Generic placeholder image">
+                <div class="media-body">
+                    <i style="color: steelblue; font-size: 0.8em; font-weight: bold;">fazhi.co</i>
+                    <br />
+                    <i style="color: whitesmoke; font-weight: bold;">我的足迹</i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+    <div style="margin: 0; padding: 0; border: none;">
+        <div class="banner statusbar-push">
+            <nav id="Toolbar-Top" class="pull-left offset-md-2 offset-lg-2 offset-sm-2">
+                <a routerLink="./mvc" routerLinkActive="active">
+                    <span>MVC</span>
+                </a>
+                <a routerLink="./angular" routerLinkActive="active">
+                    <span>angular</span>
+                </a>
+                <a routerLink="./ionic" routerLinkActive="active">
+                    <span>Ionic</span>
+                </a>
+                <a routerLink="./netcore" routerLinkActive="active">
+                    <span>NetCore</span>
+                </a>
+                <a routerLink="./db" routerLinkActive="active">
+                    <span>数据库</span>
+                </a>
+
+            </nav>
+
+
+            <nav id="TopMenu" class="pull-right" style="margin-top: -8px;">
+                <!-- <form style="float: left; width: 140px; padding-top: 2px;">
+                    <input id="SearchBox" type="text" class="form-control" placeholder="Search..." name="searchText">
+                </form> -->
+                <div class="media">
+                    <a routerLink="./login">
+                        <div class="align-self-center mr-3">
+                            <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+
+                        </div>
+                    </a>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<body>
+    <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 py-4 mt-5">
+        <router-outlet autoscroll="true"></router-outlet>
+    </div>
+</body>
+
+<footer>
+    <div class="banner-bottom">
+        <!-- <nav id="Toolbar">
+           
+        </nav> -->
+        <div class="row">
+                <div class="col align-self-center"> <a routerLink="./mvc" routerLinkActive="active">
+                    <img  src="/assets/images/jquery.png" height="32" alt="Generic placeholder image">
+                    <!-- <span>MVC</span> -->
+                </a></div>
+                <div class="col align-self-center">
+                        <a routerLink="./angular" routerLinkActive="active">
+                            <img width="40" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
+                        </a>
+                </div>
+                <div class="col align-self-center">
+                        <a routerLink="./ionic" routerLinkActive="active" class="round-bottom" >
+                            Ionic
+                        </a>
+                </div>
+                <div class="col align-self-center">
+                        <a routerLink="./netcore" routerLinkActive="active" class="round-bottom">
+                             Net
+                        </a>
+                </div>
+                <div class="col align-self-center">
+                        <a routerLink="./db" routerLinkActive="active">
+                            <img  src="/assets/images/db.png" height="32" alt="Generic placeholder image">
+                            <!-- <span>数据库</span> -->
+                        </a>
+                </div>
+        </div>
+    </div>
+
+</footer>

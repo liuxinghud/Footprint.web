@@ -1,0 +1,17 @@
+.vertical-vh{
+    height: 80vh;
+    
+}
+
+.login-head{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: -28px;
+    margin-bottom: 20px;
+}
+
+.login-fields .col{
+
+    margin: 5px 0;
+}
+ 
