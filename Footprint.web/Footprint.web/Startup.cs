@@ -2,6 +2,7 @@ using FootPrint.Business;
 using FootPrint.Business.Models;
 using IdentityModel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -42,15 +43,23 @@ namespace Footprint.web
 
             // services.AddAutoMapper();
 
+
+          
+
+
             #region jwt ÅäÖÃ
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
             var sharedKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["SigningKey"]));
-            services.AddAuthentication(x =>
+            services.AddAuthentication(o =>
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+
+
             })
-         .AddJwtBearer(x =>
+                .AddJwtBearer(x =>
          {
              x.Authority = "http://localhost:5920/";
              x.Audience = "api";
@@ -58,23 +67,33 @@ namespace Footprint.web
              x.IncludeErrorDetails = true;
              x.SaveToken = true;
 
-             x.Events = new JwtBearerEvents()
-             {
-                 OnMessageReceived = context =>
-                 {
-                     context.Token = context.Request.Query["access_token"];
-                     return Task.CompletedTask;
-                 }
-             };
+             //x.Events = new JwtBearerEvents()
+             //{
+             //    OnMessageReceived = context =>
+             //    {
+                     
+             //        context.Token = context.Request.Query["access_token"];
+             //        return Task.CompletedTask;
+             //    }
+             //};
+
              x.TokenValidationParameters = new TokenValidationParameters
              {
                  //ValidateIssuerSigningKey = true,
-                 IssuerSigningKey = sharedKey,
-                 ValidateIssuer = false,
+                 // IssuerSigningKey = sharedKey,
+                 // ValidateIssuer = false,
                  //ValidateAudience = false,
-                 NameClaimType = JwtClaimTypes.Name,
-                 RoleClaimType = JwtClaimTypes.Role
+                 // NameClaimType = JwtClaimTypes.Name,
+                 // RoleClaimType = JwtClaimTypes.Role
+
+                 ValidateIssuerSigningKey = true,
+                 IssuerSigningKey = sharedKey,
+                  
+                 ValidateIssuer = false,
+                 ValidateAudience = false
+
              };
+             
          });
 
             #endregion
@@ -82,7 +101,7 @@ namespace Footprint.web
             {
                 //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly(" Footprint"));
                 //options.UseOpenIddict();
-                options.UseSqlServer(Configuration["ConnectionStrings:MSSQLConnection"], b => b.MigrationsAssembly("FootPrint.web").CommandTimeout(60).EnableRetryOnFailure(2));
+                options.UseSqlServer(Configuration["ConnectionStrings:MSSQLConnection"], b => b.MigrationsAssembly("Footprint.web").CommandTimeout(60).EnableRetryOnFailure(2));
             });
             services.AddIdentity<ApplicationUser, ApplicationRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -105,6 +124,7 @@ namespace Footprint.web
                 options.Lockout.AllowedForNewUsers = true;
                 // User settings
                 options.User.RequireUniqueEmail = true;
+             
             });
 
 

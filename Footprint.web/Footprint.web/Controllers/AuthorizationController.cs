@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -23,12 +24,14 @@ namespace Footprint.web.Controllers
         private IConfiguration Configuration { get; }
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private RoleManager<ApplicationRole> _roleManager;
         public AuthorizationController(IConfiguration configuration, SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             this._signInManager = signInManager;
             this._userManager = userManager;
             this.Configuration = configuration;
+            this._roleManager = roleManager;
         }
 
         [HttpPost, Route("token")]
@@ -81,8 +84,9 @@ namespace Footprint.web.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
             //var key = Encoding.ASCII.GetBytes(Consts.Secret);
             var authTime = DateTime.UtcNow;
-            var expiresAt = authTime.AddMinutes(5);
+            var expiresAt = authTime.AddMinutes(30);
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["SigningKey"]));
+            var roles = _roleManager.Roles.Include(x => x.Users).Where(c => (c.Users.Select(x => x.UserId)).Contains(user.Id)).ToList();
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -102,18 +106,8 @@ namespace Footprint.web.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            //    var ticket = await CreateTicketAsync(request, user);
-            // var s= SignIn(ticket.Principal, ticket.Properties, ticket.AuthenticationScheme);
-            //error: string;
-            //error_description: string;
-            //error_uri: string;
-            //expires_at: number;
-            //id_token: string;
-            //profile: any;
-            //scope: string;
-            //session_state: any;
-            //state: any;
-            //token_type: string;
+
+       
             return Ok(new
             {
                 access_token = tokenString,
@@ -121,7 +115,7 @@ namespace Footprint.web.Controllers
                 id_token=user.Id.ToString(),
                 profile = new
                 {
-                    roles=user.Roles.Select(x=>x),
+                    roles= roles?.Select(x=>x.Name).ToArray(),
                     auth_time = new DateTimeOffset(authTime).ToUnixTimeSeconds(),
                     expires_at = new DateTimeOffset(expiresAt).ToUnixTimeSeconds()
                 }
@@ -171,6 +165,8 @@ namespace Footprint.web.Controllers
                 }
             });
         }
+
+
 
 
 

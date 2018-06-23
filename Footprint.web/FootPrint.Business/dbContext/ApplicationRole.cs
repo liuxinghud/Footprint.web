@@ -7,9 +7,12 @@ namespace FootPrint.Business.Models
 {
     public class ApplicationRole : IdentityRole<long>, IEntityBase
     {
+
          public ApplicationRole() { }
         public ApplicationRole(string roleName):base(roleName) {}
 
+
+     
         public virtual ICollection<IdentityUserRole<long>> Users { get; set; }
         public virtual ICollection<IdentityRoleClaim<long>> Claims { get; set; }
         public ApplicationUser CreatedBy { get; set; }

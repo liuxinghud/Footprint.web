@@ -25,6 +25,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180622085139_m1.cs" />
+    <Compile Remove="Migrations\20180622085525_m1.cs" />
+    <Compile Remove="Migrations\20180622091013_m1.cs" />
+    <Compile Remove="Migrations\20180622092935_m1.cs" />
+    <Compile Remove="Migrations\20180622094637_m1.cs" />
+    <Compile Remove="Migrations\20180622101135_m1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="FootprintApp\angular.json" />
     <None Include="FootprintApp\e2e\tsconfig.e2e.json" />
     <None Include="FootprintApp\package-lock.json" />

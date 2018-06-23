@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService, MessageType } from '../../../providers/message.service';
+import { AccountService } from '../../../providers/account.service';
 
 @Component({
   selector: 'app-mvc',
@@ -8,12 +9,24 @@ import { MessageService, MessageType } from '../../../providers/message.service'
 })
 export class MvcComponent implements OnInit {
 
-  constructor(private msg: MessageService) { }
+  constructor(private msg: MessageService, private account: AccountService) { }
 
   ngOnInit() {}
 
 
-  showmsg() {this.msg.showMessage("Time", new Date().toString(), MessageType.info);}
+  showmsg() {
+    let u = this.account.currentUser;
+
+
+    this.account.authTest();
+
+
+    this.msg.showMessage("Time", new Date().toString(), MessageType.info);
+
+
+
+
+  }
   showloading() {
     this.msg.startLoading();
     setTimeout(() => {
