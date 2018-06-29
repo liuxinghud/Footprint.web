@@ -90,15 +90,22 @@
                     <input id="SearchBox" type="text" class="form-control" placeholder="Search..." name="searchText">
                 </form> -->
                 <div class="media">
-                    <a routerLink="./login">
+                    <a routerLink="./login" *ngIf="!islogin">
                         <div class="align-self-center mr-3">
                             <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                         </div>
                         <div class="media-body">
+                        </div>
+                    </a>
+                    <a *ngIf="islogin">
+                        <div class="align-self-center mr-3">
+                            <div style="display: table;">
+                                <i class="fa fa-user-circle fa-2x" aria-hidden="true" style="display: table-cell;vertical-align: middle;"></i>
+                                <i style="display: table-cell;vertical-align: middle;">{{this.currentuser?.userName}}是地地</i>
+                            </div>
 
                         </div>
                     </a>
-
                 </div>
             </nav>
         </div>
@@ -117,31 +124,34 @@
            
         </nav> -->
         <div class="row">
-                <div class="col align-self-center"> <a routerLink="./mvc" routerLinkActive="active">
-                    <img  src="/assets/images/jquery.png" height="32" alt="Generic placeholder image">
+            <div class="col align-self-center">
+                <a routerLink="./mvc" routerLinkActive="active">
+                    <img src="/assets/images/jquery.png" height="32" alt="Generic placeholder image">
                     <!-- <span>MVC</span> -->
-                </a></div>
-                <div class="col align-self-center">
-                        <a routerLink="./angular" routerLinkActive="active">
-                            <img width="40" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
-                        </a>
-                </div>
-                <div class="col align-self-center">
-                        <a routerLink="./ionic" routerLinkActive="active" class="round-bottom" >
-                            Ionic
-                        </a>
-                </div>
-                <div class="col align-self-center">
-                        <a routerLink="./netcore" routerLinkActive="active" class="round-bottom">
-                             Net
-                        </a>
-                </div>
-                <div class="col align-self-center">
-                        <a routerLink="./db" routerLinkActive="active">
-                            <img  src="/assets/images/db.png" height="32" alt="Generic placeholder image">
-                            <!-- <span>数据库</span> -->
-                        </a>
-                </div>
+                </a>
+            </div>
+            <div class="col align-self-center">
+                <a routerLink="./angular" routerLinkActive="active">
+                    <img width="40" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+                    />
+                </a>
+            </div>
+            <div class="col align-self-center">
+                <a routerLink="./ionic" routerLinkActive="active" class="round-bottom">
+                    Ionic
+                </a>
+            </div>
+            <div class="col align-self-center">
+                <a routerLink="./netcore" routerLinkActive="active" class="round-bottom">
+                    Net
+                </a>
+            </div>
+            <div class="col align-self-center">
+                <a routerLink="./db" routerLinkActive="active">
+                    <img src="/assets/images/db.png" height="32" alt="Generic placeholder image">
+                    <!-- <span>数据库</span> -->
+                </a>
+            </div>
         </div>
     </div>
 

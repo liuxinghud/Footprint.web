@@ -18,17 +18,12 @@ isSearchAllowed = true;
 
 urls = {
   baseUrl: null,
-  albums: "api/albums",
-  album: "api/album",
-  artists: "api/artists",
-  artist: "api/artist",
-  artistLookup: "api/artistlookup?search=",
-  saveArtist: "api/artist",
   login: "api/authorization/token", //"api/login",
   logout: "api/authorization/logout",
   isAuthenticated: "api/isAuthenticated",
-  reloadData: "api/reloadData",
-  applicationStats: "api/applicationstats",
+  userlist:"api/account/userList",
+
+
   url: (name,parm1?,parm2?,parm3?) => {
     var url = this.urls.baseUrl + this.urls[name];
     if (parm1)

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AuthGuardService } from '../providers/auth-guard.service';
 const appRoutes: Routes = [
   {
     path: 'management',
     loadChildren: './management/management.module#ManagementModule',
-   // canActivate:[AuthGuard]
+   canActivate:[AuthGuardService]
   },
   {
     path: 'portal',

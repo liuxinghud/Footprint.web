@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../../providers/account.service';
 
 @Component({
   selector: 'app-usermanager',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usermanager.component.css']
 })
 export class UsermanagerComponent implements OnInit {
+  constructor(private accountsrv:AccountService) { }
+  ngOnInit() {}
 
-  constructor() { }
 
-  ngOnInit() {
-  }
 
+  
 }

@@ -62,7 +62,7 @@ export class MessageService {
         this.toastr.warning(msg.detail, msg.title, { timeOut: 5000, disableTimeOut: false, closeButton: false, });
         break;
       case MessageType.error:
-        this.toastr.error(msg.detail, msg.title, { disableTimeOut: true, closeButton: true });
+        this.toastr.error(msg.detail, msg.title, {timeOut: 15000, disableTimeOut: false, closeButton: true,progressBar:false });
         break;
       // case MessageType.default:
       default:

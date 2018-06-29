@@ -203,6 +203,12 @@ vertical-align: middle;
         .banner nav a span {
             display: none;
         }
+
+        .banner nav a, .banner nav input {
+            padding-right: 0px;
+        }
+
+
     }
 
     .album {

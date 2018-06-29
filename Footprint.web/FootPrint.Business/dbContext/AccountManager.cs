@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using FootPrint.Business.Models;
-using IdentityModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -48,7 +46,6 @@ namespace FootPrint.Business
             IHttpContextAccessor httpAccessor)
         {
             _context = context;
-            _context.CurrentUserId = httpAccessor.HttpContext?.User.FindFirst(JwtClaimTypes.Subject)?.Value?.Trim();
             _userManager = userManager;
             _roleManager = roleManager;
         }

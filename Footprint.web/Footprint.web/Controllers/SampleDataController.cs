@@ -14,6 +14,7 @@ namespace Footprint.web.Controllers
         
         [HttpGet,Route("test")]
         [Authorize]
+        [Produces("application/json")]
         public async Task<IActionResult> AuthTest()
         {
             var s = User.Identity.IsAuthenticated;
