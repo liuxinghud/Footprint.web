@@ -12,16 +12,11 @@ import { PermissionValues } from '../../../models/permission.model';
 export class PortalLayoutComponent implements OnInit {
   currentuser: UserModel;
   permission: PermissionValues[];
-  islogin: boolean;
   constructor(private route: Router, private authservice: AuthService) { }
 
   ngOnInit() {
     this.currentuser = this.authservice.currentUser;
     this.permission = this.authservice.userPermissions
-    this.authservice.getLoginStatusEvent().subscribe(x => {
-      this.islogin = x;
-    })
-  
     if (this.route.url == "/portal") {
       this.route.navigateByUrl('/Portal/mvc');
     }

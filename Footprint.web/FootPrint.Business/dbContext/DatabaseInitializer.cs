@@ -45,7 +45,10 @@ namespace FootPrint.Business
 
                 await CreateUserAsync("admin", "Qq@123456", "Inbuilt Administrator", "admin@ebenmonney.com", "+1 (123) 000-0000", new string[] { adminRoleName });
                 await CreateUserAsync("user", "Qq@123456", "Inbuilt Standard User", "user@ebenmonney.com", "+1 (123) 000-0001", new string[] { userRoleName });
-
+                for (int i = 0; i < 20; i++)
+                {
+                    await CreateUserAsync($"user{i}", "Qq@123456", "Inbuilt Standard User", $"user{i}@user.com", "+1 (123) 000-0001", new string[] { userRoleName });
+                }
                 _logger.LogInformation("Inbuilt account generation completed");
             }
 

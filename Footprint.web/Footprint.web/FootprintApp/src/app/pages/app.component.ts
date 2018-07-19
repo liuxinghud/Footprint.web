@@ -1,6 +1,8 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { MessageService } from '../providers/message.service';
+import { Observable } from '../../../node_modules/rxjs';
+import { debounceTime } from '../../../node_modules/rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,10 +11,12 @@ import { MessageService } from '../providers/message.service';
 export class AppComponent implements OnInit {
 
   private isloading: boolean = false;
-  constructor(private router: Router, public message: MessageService, private ngzone: NgZone) { }
 
+  constructor(private router: Router, public message: MessageService) {
+
+   }
   timeoutId: any;
-  ngOnInit(): void {
+  ngOnInit() {
     //路由大小写忽略
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -30,7 +34,7 @@ export class AppComponent implements OnInit {
       }
       this.timeoutId = setTimeout(() => {
         this.message.showToast(msg);
-      }, 100);
+      }, 500);
     });
 
     this.message.getLoadingEvent().subscribe(x => {
@@ -44,6 +48,7 @@ export class AppComponent implements OnInit {
 
   }
 
+    
   // ngAfterViewInit() {
 
   // }
@@ -51,9 +56,9 @@ export class AppComponent implements OnInit {
   //   //开始订阅事件
 
   // }
-
-
-
-
+//   @HostListener('window:resize') onClick() {
+     
+//     window.alert('Host Element Clicked');
+// }
 
 }

@@ -1,34 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageLayoutComponent } from './manage-layout/manage-layout.component';
+import { AuthGuardService } from '../../providers/auth-guard.service';
+import { UsermanagerComponent } from './usermanager/usermanager.component';
 
 const adminRoutes: Routes = [
   {
     path: '',
     component: ManageLayoutComponent,
-    //canActivateChild:[AuthGuard],
-    // children: [
-    //   {
-    //    // path: 'UserList',
-    //   //   component: UserListComponent,
-    //   },
-    //   {
-    //    // path: 'Edit/:id',
-    //   //  component: EditUserComponent,
-    //   },
-    //   {
-    //    // path: 'register',
-    //   // component: RegisterComponent,
-    //   },
-    //   {
-    //    // path: 'Create',
-    //     // component: CreateUserComponent,
-    //     // canDeactivate: [CanDeactivateGuard],
-    //     resolve: {
-    //      crisis: LayoutComponent
-    //     },
-    //   },
-    // ]
+    canActivateChild: [AuthGuardService],
+    children: [
+      {
+        path: 'userlist',
+        component: UsermanagerComponent,
+      },
+      // {
+      //   // path: 'Edit/:id',
+      //   //  component: EditUserComponent,
+      // },
+      // {
+      //   // path: 'register',
+      //   // component: RegisterComponent,
+      // },
+      // {
+      //   // path: 'Create',
+      //   // component: CreateUserComponent,
+      //   // canDeactivate: [CanDeactivateGuard],
+      // },
+    ]
   },
 ];
 
@@ -38,7 +37,8 @@ const adminRoutes: Routes = [
     RouterModule.forChild(adminRoutes)
   ],
   exports: [
-    RouterModule
+    RouterModule,
+
   ],
   providers: [
 

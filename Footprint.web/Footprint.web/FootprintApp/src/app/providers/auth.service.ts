@@ -18,7 +18,7 @@ export class AuthService {
     public reLoginDelegate: () => void;
     private previousIsLoggedInCheck = false;
     private _loginStatus = new Subject<boolean>();
-    isLoggedIn: boolean = false;
+    public isLoggedIn: boolean = false;
     public get loginUrl() { return this.cfg.urls.login; }
     public loginRedirectUrl: string; //登录跳转地址
     public logoutRedirectUrl: string;//登出跳转地址
@@ -37,9 +37,7 @@ export class AuthService {
         let user = currentUser || this.localStorage.getDataObject<UserModel>(DBkeys.CURRENT_USER);
         this.isLoggedIn = user != null;
         if (this.previousIsLoggedInCheck != this.isLoggedIn) {
-            setTimeout(() => {
-                this._loginStatus.next(this.isLoggedIn);
-            });
+            this._loginStatus.next(this.isLoggedIn);
         }
         this.previousIsLoggedInCheck = this.isLoggedIn;
     }
@@ -97,16 +95,15 @@ export class AuthService {
         return this.http.post<LoginResponse>(this.cfg.urls.login, requestBody, { headers: header }).pipe(
             timeout(10000),
             map(res => {
-            return this.processLoginResponse(res, rememberMe)
-        }), catchError(x => {
-           return throwError(x);
-        }));
+                return this.processLoginResponse(res, rememberMe)
+            }), catchError(x => {
+                return throwError(x);
+            }));
         //.append('scope', 'openid email phone profile offline_access roles')
     }
 
 
     private processLoginResponse(response: LoginResponse, rememberMe: boolean) {
-
         let accessToken = response.access_token;
 
         if (accessToken == null)
@@ -190,7 +187,7 @@ export class AuthService {
                     // return Observable.throw('身份过期');
                 }
                 else {
-                    return throwError(new Error(refreshLoginError|| 'server error'));
+                    return throwError(new Error(refreshLoginError || 'server error'));
                     // return Observable.throw(refreshLoginError || 'server error');
                 }
             }));

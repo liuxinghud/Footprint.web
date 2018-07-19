@@ -11,7 +11,7 @@ import { PortalLayoutComponent } from './portal-layout/portal-layout.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule, MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatIconModule, MatButtonModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
- 
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   imports: [
     CommonModule,
@@ -23,7 +23,8 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     MatCheckboxModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
   ],
 
   declarations: [

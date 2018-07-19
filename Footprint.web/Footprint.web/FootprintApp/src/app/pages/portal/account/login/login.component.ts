@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
     let formvl = this.loginForm.getRawValue();
     this.authservice.login(formvl.username, formvl.password, formvl.rememberme).subscribe((x: UserModel) => {
       let redirecturl = this.authservice.loginRedirectUrl || '/portal/mvc';
-      this.router.navigateByUrl(redirecturl);
+      setTimeout(() => {
+        this.router.navigateByUrl(redirecturl);
+      }, 500);
       this.msg.stopLoading();
     }, (err: HttpErrorResponse) => {
       this.msg.stopLoading();
@@ -47,7 +49,6 @@ export class LoginComponent implements OnInit {
   }
 
   errorhandler(error: HttpErrorResponse) {
-    debugger;
     if (error.status == 404) {
       this.msg.showMessage("Not Found Error", "请求的地址未找到", MessageType.error);
     } else if (error.status == 0) {
@@ -61,16 +62,16 @@ export class LoginComponent implements OnInit {
       if (error.error && error.error.code) {
         let control = this.loginForm.controls[error.error.code];
         control.setErrors(Validators.required)
-        this.msg.showMessage(error.error.code,error.error.error_description||error.statusText,MessageType.error);
-      }else{
-        this.msg.showMessage("",error.error.error_description||error.statusText,MessageType.error);
+        this.msg.showMessage(error.error.code, error.error.error_description || error.statusText, MessageType.error);
+      } else {
+        this.msg.showMessage("", error.error.error_description || error.statusText, MessageType.error);
       }
 
     } else if (error.name == "TimeoutError") {
       this.msg.showMessage("TimeOut Error", "请求超时", MessageType.error);
 
     } else {
-     this.msg.showMessage(error.status.toString(),error.statusText,MessageType.error);
+      this.msg.showMessage(error.status.toString(), error.statusText, MessageType.error);
     }
   }
 

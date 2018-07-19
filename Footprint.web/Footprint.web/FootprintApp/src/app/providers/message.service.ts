@@ -73,11 +73,13 @@ export class MessageService {
 
   //loading 
   public startLoading() {
-    this.stopLoading();
+    // this.stopLoading();
     this.isloading.next(true);
   }
   public stopLoading() {
+    setTimeout(() => {
     this.isloading.next(false);
+    }, 500);
   }
 
   getLoadingEvent() {

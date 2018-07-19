@@ -1,10 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { CanActivate, CanActivateChild, CanLoad, Router, ActivatedRouteSnapshot, RouterStateSnapshot, Route } from '@angular/router';
 import { AuthService } from './auth.service';
+import { UserModel } from '../models/userinfo';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad {
-    constructor(private authService: AuthService, private router: Router) { }
+    user:UserModel;
+    constructor(private authService: AuthService, private router: Router) { 
+        this.user=authService.currentUser;
+    }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
@@ -23,7 +27,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
     }
 
     checkLogin(url: string): boolean {
-        if (this.authService.isLoggedIn && !this.authService.isSessionExpired) {
+        if (this.user&& !this.authService.isSessionExpired) {
             return true;
         } else {
             this.authService.logout();
@@ -31,6 +35,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
             this.router.navigate(['/portal/login']);
             return false;
         }
+
 
     }
 }

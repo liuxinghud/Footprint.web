@@ -9,6 +9,7 @@ namespace FootPrint.Business
     public interface IAccountManager
     {
 
+        Task<int> GetUserCountAsync();
         Task<bool> CheckPasswordAsync(ApplicationUser user, string password);
         Task<Tuple<bool, string[]>> CreateRoleAsync(ApplicationRole role, IEnumerable<string> claims);
         Task<Tuple<bool, string[]>> CreateUserAsync(ApplicationUser user, IEnumerable<string> roles, string password);
@@ -26,6 +27,7 @@ namespace FootPrint.Business
         Task<ApplicationUser> GetUserByUserNameAsync(string userName);
         Task<IList<string>> GetUserRolesAsync(ApplicationUser user);
         Task<List<Tuple<ApplicationUser, string[]>>> GetUsersAndRolesAsync(int page, int pageSize);
+        Task<List<Tuple<ApplicationUser, string[]>>> GetUsersAndRolesAsync(int page, int pageSize,string order);
         Task<Tuple<bool, string[]>> ResetPasswordAsync(ApplicationUser user, string newPassword);
         Task<bool> TestCanDeleteRoleAsync(long roleId);
        

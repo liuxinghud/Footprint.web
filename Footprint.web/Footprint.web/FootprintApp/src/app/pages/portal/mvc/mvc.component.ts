@@ -17,7 +17,6 @@ export class MvcComponent implements OnInit {
   showmsg() {
 
 
-    this.account.authTest();
     this.msg.showMessage("Time", new Date().toString(), MessageType.info);
 
 

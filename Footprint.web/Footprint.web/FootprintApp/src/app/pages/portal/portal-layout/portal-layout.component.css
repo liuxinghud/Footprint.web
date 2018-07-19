@@ -41,13 +41,23 @@ h3 {
     left: 2px;
     z-index: 11;
 }
+
+#TitleBar .logo{
+    display: table;height: 46px;
+    position: fixed;
+    z-index: 100;
+}
+#TitleBar .logo .logo_img{
+    display: table-cell;vertical-align: middle;
+}
+
+#TitleBar .logo .logo_des{
+    display: table-cell;vertical-align: middle;padding-left: 5px;
+}
 #Toolbar {
     display: none;
 }
-#Toolbar-Top {
-}
-#TopMenu {
-}
+ 
 #SearchBox {
   background-color: #FFFFFF;
   /* background-image: url(../images/search_box.png); */
@@ -438,3 +448,5 @@ select:not(ng-pristine).ng-invalid, textarea:not(.ng-pristine).ng-invalid {
 .modal-body {
     padding: 10px 20px 5px 20px;
 }
+ 
+

@@ -1,56 +1,6 @@
-<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light col-md-10 offset-md-1">
-  <a class="navbar-brand">
-      <img src="/assets/logo.png" width="30">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-           
-          <li class="nav-item " routerLinkActive="active">
-              <a class="nav-link" routerLink="./mvc">MVC</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" routerLink="./angular">Angular</a>
-          </li>
-          
-          <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" routerLink="./ionic">ionic</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link " routerLink="./netcore">NetCore2.0</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" routerLink="./db">数据库</a>
-          </li>
-          
-      </ul>
-
-      <div class="my-2">
-          <a routerLink="./login" routerLinkActive="active" >
-              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
-          </a>
-          <a   href="javascript:void(0);" >logout</a>
-      </div>
-      
-  </div>
-</nav>
-
-<div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 py-4 mt-5">
-  <router-outlet></router-outlet>
-</div> -->
 <header>
     <div id="TitleBar">
-        <a routerLink="./mvc">
-            <!-- <img src="/assets/logo.png"
-                 style="height: 35px; float: left" />
-            <div style="float: left; margin-left: 5px; line-height: 1.2">
-                <i style="color: steelblue; font-size: 0.8em; font-weight: bold;">fazhi.co</i><br />
-                <i style="color: whitesmoke; font-size: 1.25em; font-weight: bold;">我的足迹</i>
-            </div> -->
+        <!-- <a routerLink="./mvc"> 
             <div class="media">
                 <img class="align-self-center mr-3" src="/assets/logo.png" height="40" alt="Generic placeholder image">
                 <div class="media-body">
@@ -59,7 +9,22 @@
                     <i style="color: whitesmoke; font-weight: bold;">我的足迹</i>
                 </div>
             </div>
-        </a>
+        </a> -->
+        <div class="logo">
+            <div class="logo_img">
+                <img src="/assets/logo.png" height="32" alt="Generic placeholder image">
+            </div>
+            <div class="logo_des">
+                <div style="color: whitesmoke;font-size: 1em;">
+                    <i>足迹</i>
+                </div>
+                <div style="color: whitesmoke; font-size: 0.5em;">
+                    <i>fazhi.co</i>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 
@@ -90,14 +55,14 @@
                     <input id="SearchBox" type="text" class="form-control" placeholder="Search..." name="searchText">
                 </form> -->
                 <div class="media">
-                    <a routerLink="./login" *ngIf="!islogin">
+                    <a routerLink="./login" *ngIf="!currentuser">
                         <div class="align-self-center mr-3">
                             <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                         </div>
                         <div class="media-body">
                         </div>
                     </a>
-                    <a *ngIf="islogin">
+                    <a *ngIf="currentuser">
                         <div class="align-self-center mr-3">
                             <div style="display: table;">
                                 <i class="fa fa-user-circle fa-2x" aria-hidden="true" style="display: table-cell;vertical-align: middle;"></i>

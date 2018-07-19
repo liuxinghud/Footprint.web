@@ -1,3 +1,57 @@
-<p>
-  usermanager works!
-</p>
+ <!-- <div *ngFor="let u of userlist |async ">
+      {{u | json}}
+    [rowHeight]="'auto'"
+
+ </div> -->
+
+ <!-- <ngx-datatable *ngIf="reload"
+ class="material user-scrolling"
+ [rows]="userlist |async"
+ [columns]="columns"
+ [columnMode]="'force'"
+ [rowHeight]="rowHeight"
+ [headerHeight]="headerHeight"
+  
+ [footerHeight]="footerHeight"
+ [reorderable]="false"
+ [externalPaging]="true"
+ [count]="totalcount"
+ [offset]="page"
+ [limit]="pageSize"
+ (page)="onPage($event.offset+1)"
+ [loadingIndicator]="false"
+ (sort)="onSort($event)"
+ >
+</ngx-datatable> -->
+<ngx-datatable *ngIf="reload"
+ class="material user-scrolling"
+ [rows]="rows"
+ [columns]="columns"
+ [columnMode]="'force'"
+ [rowHeight]="rowHeight"
+ [headerHeight]="headerHeight"
+  
+ [footerHeight]="footerHeight"
+ [reorderable]="false"
+ [externalPaging]="true"
+ [count]="totalcount"
+ [offset]="page"
+ [limit]="pageSize"
+ (page)="onPage($event.offset+1)"
+ [loadingIndicator]="false"
+ (sort)="onSort($event)"
+ >
+</ngx-datatable>
+
+
+<ng-template #rolesTemplate let-row="row" let-value="value" let-i="index">
+<span class="user-role" *ngFor="let role of value">{{role}}</span>
+</ng-template>
+
+<ng-template #actionsTemplate let-row="row" let-value="value" let-i="index">
+<div *ngIf="canManageUsers">
+ <a class="btn btn-link btn-xs" href="javascript:;" (click)="editUser(row)"><i class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i> </a>
+ &nbsp;&nbsp;
+ <a class="btn btn-link btn-xs" href="javascript:;" (click)="deleteUser(row)"><i class="fa fa-trash-o fa-1x" aria-hidden="true"></i></a>
+</div>
+</ng-template>

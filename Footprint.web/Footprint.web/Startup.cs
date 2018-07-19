@@ -71,7 +71,6 @@ namespace Footprint.web
                 options.Lockout.MaxFailedAccessAttempts = 10;
                 options.Lockout.AllowedForNewUsers = true;
                 options.User.RequireUniqueEmail = true;
-
                 // Configure Identity to use the same JWT claims as OpenIddict instead
                 // of the legacy WS-Federation claims it uses by default (ClaimTypes),
                 // which saves you from doing the mapping in your authorization controller.
@@ -98,6 +97,7 @@ namespace Footprint.web
             {
                 options.DefaultAuthenticateScheme = OAuthValidationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = OAuthValidationDefaults.AuthenticationScheme;
+               
             }).AddOAuthValidation();
 
 

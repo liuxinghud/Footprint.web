@@ -25,12 +25,13 @@ namespace Footprint.web.Controllers
         }
 
 
-        [HttpGet,Route("userList/{page:int}/{pageSize:int}")]
+        [HttpGet,Route("userList")]
         [Produces(typeof(List<UserViewModel>))]
+        //[Produces("application/json")]
         [Authorize(Policies.ViewAllUsersPolicy)]
-        public async Task<IActionResult> GetUserList(int page,int pageSize)
+        public async Task<IActionResult> GetUserList(int page=1,int pageSize=10,string orderby="")
         {
-            var usersAndRoles = await _accountManager.GetUsersAndRolesAsync(page, pageSize);
+            var usersAndRoles = await _accountManager.GetUsersAndRolesAsync(page, pageSize,orderby);
 
             List<UserViewModel> usersVM = new List<UserViewModel>();
 
@@ -41,8 +42,18 @@ namespace Footprint.web.Controllers
 
                 usersVM.Add(userVM);
             }
-
+            //return Json(usersVM);
             return Ok(usersVM);
+        }
+
+
+        [HttpGet, Route("usercount")]
+        [Produces("application/json")]
+        [Authorize(Policies.ViewAllUsersPolicy)]
+        public async Task<IActionResult> GetUserCount()
+        {
+            int count = await _accountManager.GetUserCountAsync();
+            return Ok(count);
         }
 
     }

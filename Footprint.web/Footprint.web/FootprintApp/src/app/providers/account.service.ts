@@ -1,49 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigService } from './config.service';
 import { Servicebase } from './servicebase';
 import { UserModel } from '../models/userinfo';
+import { HttpParams } from '../../../node_modules/@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-  page: number = 1;
-  pagesize: number = 10;
-  userlist:UserModel[];
-  constructor(private cfg: ConfigService, private service: Servicebase) {
 
+  constructor(private cfg: ConfigService, public servicebase: Servicebase) {
+
+  }
+  public getUserList(params:HttpParams, showloading: boolean = true) {
+    let url = this.cfg.urls.userlist;
+   
+    return this.servicebase.getList<UserModel>(url, params, showloading);
   }
 
 
-
-  public getUserList(page: number, pagesize: number) {
-
-    let url = this.cfg.urls.userlist + `/${page}` + `/${pagesize}`;
-    this.service.getList<UserModel>(url).subscribe(x=>{
-       
-    })
-  }
-
-
-
-
-
-  authTest() {
-    debugger;
-    this.service.getdata('api/sampleData/test').subscribe(x => {
-      debugger;
-    }, error => {
-      debugger;
-    })
-    //  this.http.get('api/sampleData/test',{headers:this.service. }).subscribe(x=>{
-    //    debugger;
-    //  }
-    // ,error=>{
-    //   debugger;
-    // })
-
+  public getUserCount() {
+    let url = this.cfg.urls.usercount;
+    return this.servicebase.getdata<number>(url);
 
   }
-
-
 
 
 }

@@ -55,48 +55,6 @@ namespace Footprint.web.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> LogIn(OpenIdConnectRequest request)
         {
-            //var user = await _userManager.FindByEmailAsync(userLogin.UserName) ?? await _userManager.FindByNameAsync(userLogin.UserName);
-            //if (user == null)
-            //{
-            //    ModelState.AddModelError("username", "用户不存在");
-            //    return BadRequest(ModelState);
-            //}
-            //// Ensure the user is enabled.
-            //if (user.IsDisabled)
-            //{
-            //    ModelState.AddModelError("username", "用户不存在");
-            //    return BadRequest(ModelState);
-            //}
-            //// Validate the username/password parameters and ensure the account is not locked out.
-            //var result = await _signInManager.CheckPasswordSignInAsync(user, userLogin.Password, true);
-
-            //// Ensure the user is not already locked out.
-            //if (result.IsLockedOut)
-            //{
-            //    ModelState.AddModelError("username", "用户已被锁定");
-            //    return BadRequest(ModelState);
-            //}
-
-            //// Reject the token request if two-factor authentication has been enabled by the user.
-            //if (result.RequiresTwoFactor)
-            //{
-            //    ModelState.AddModelError(string.Empty, "双因素验证失败");
-            //    return BadRequest(ModelState);
-            //}
-
-            //// Ensure the user is allowed to sign in.
-            //if (result.IsNotAllowed)
-            //{
-            //    ModelState.AddModelError(string.Empty, "指定用户不允许登录");
-            //    return BadRequest(ModelState);
-            //}
-
-            //if (!result.Succeeded)
-            //{
-            //    ModelState.AddModelError(string.Empty, "请检查用户名或密码是否正确");
-            //    return BadRequest(ModelState);
-            //}
-
             if (request.IsPasswordGrantType())
             {
                 var user = await _userManager.FindByEmailAsync(request.Username) ?? await _userManager.FindByNameAsync(request.Username);
@@ -224,14 +182,15 @@ namespace Footprint.web.Controllers
 
         private async Task<AuthenticationTicket> CreateTicketAsync(OpenIdConnectRequest request, ApplicationUser user)
         {
+
             // Create a new ClaimsPrincipal containing the claims that
             // will be used to create an id_token, a token or a code.
             var principal = await _signInManager.CreateUserPrincipalAsync(user);
-
+            
             // Create a new authentication ticket holding the user identity.
             var ticket = new AuthenticationTicket(principal, new AuthenticationProperties(), OpenIdConnectServerDefaults.AuthenticationScheme);
 
-
+            
             //if (!request.IsRefreshTokenGrantType())
             //{
             // Set the list of scopes granted to the client application.

@@ -1,3 +1,65 @@
-<p>
-  manage-layout works!
-</p>
+<div id="TitleBar">
+    <div class="logo">
+        <div class="logo_img">
+            <img src="/assets/logo.png" height="32" alt="Generic placeholder image">
+        </div>
+        <div class="logo_des">
+            <div style="color: whitesmoke;font-size: 1em;">
+                <i>足迹</i>
+            </div>
+            <div style="color: whitesmoke; font-size: 0.5em;">
+                <i>fazhi.co</i>
+            </div>
+        </div>
+    </div>
+    <div style="margin: 0; padding: 0; border: none;">
+        <div class="banner statusbar-push">
+            <nav id="TopMenu" class="pull-right" style="margin-top: -8px;">
+                <!-- <form style="float: left; width: 140px; padding-top: 2px;">
+                    <input id="SearchBox" type="text" class="form-control" placeholder="Search..." name="searchText">
+                </form> -->
+                <div class="media">
+                    <a routerLink="./login">
+                        <div class="align-self-center mr-3">
+                            <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                        </div>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="row py-3 mt-5" style="padding: 0;margin: 0;">
+    <div class="col-2 pc-menu-left" >
+        <mat-accordion>
+            <mat-expansion-panel [hideToggle]="false" (opened)="panelOpenState=true" (closed)="panelOpenState == false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        用户管理
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list role="list">
+                    <mat-list-item role="listitem"><a class="a-menu-link" routerLink="/management/userlist" routerLinkActive="active">用户列表</a></mat-list-item>
+                    <mat-list-item role="listitem"><a class="a-menu-link" routerLink="/management/userlist" routerLinkActive="active">用户组列表</a></mat-list-item>
+                    <mat-list-item role="listitem"><a class="a-menu-link" routerLink="/management/userlist" routerLinkActive="active">新增用户</a></mat-list-item>
+                  </mat-list>
+
+
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        文章管理
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>I'm visible because I am open</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <div class="col pc-menu-right">
+        <router-outlet autoscroll="true"></router-outlet>
+    </div>
+</div>
